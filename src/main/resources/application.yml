@@ -8,11 +8,11 @@ spring:
   #estrategia de generacion de base de datos
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost/BPZ
+    url: jdbc:postgresql://localhost/BPZdb3
     username: postgres
-    password: 19franny98
+    password: root
     
     
     
 server:
-  port: 8090
+  port: 8081
