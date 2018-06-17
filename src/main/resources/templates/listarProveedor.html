@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+		
+				<table class="table table-striped table-bordered">
+					<thead class="thead-inverse">
+						<tr>
+							<th>id</th>
+							<th>Razon Social</th>
+							<th>RUC</th>
+							<th>editar</th>
+							<th>eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="proveedor: ${proveedores}">
+							<td><a class="btn btn-primary btn xs"
+							th:text="${proveedor.idProveedor}"></a></td>
+							<td th:text="${proveedor.razonSocial}"></td>
+							<td th:text="${proveedor.ruc}"></td>
+							<td><a class="btn btn-danger btn-xs"
+								th:href="@{/proveedor/editar/} + ${proveedor.idProveedor}" th:text="'editar'"
+								></a></td>
+							<td><a class="btn btn-danger btn-xs"
+								th:href="@{/proveedor/eliminar/} + ${proveedor.idProveedor}" th:text="'eliminar'"
+								onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
+								
+								
+						</tr>
+					</tbody>
+			
+				</table>
+
+				<div class="form-group row">
+					<div class="col-sm-6">
+						<td><a class="btn btn-primary" th:href="@{/proveedor/crear} "
+							th:text="'crear'"></a></td>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

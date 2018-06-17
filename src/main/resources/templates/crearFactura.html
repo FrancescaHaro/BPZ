@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-dark text-white">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<div th:object="${facturaViewModel}" th:remove="tag">
+					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+						role="alert">
+						<li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+					</ul>
+				</div>
+				
+					
+					<form th:action="@{/factura/crear}" th:object="${facturaViewModel}" method="post"
+					enctype="multipart/form-data">
+					
+					<div class="form-group row">
+					    <label for="codigo_servicio" class="col-sm-2 col-form-label">Código de Servicio</label>
+					    <div class="col-sm-2">
+						    <select th:field="*{factura.codigoServicio}" class="form-control" id="exampleFormControlSelect1">
+						      <option th:value="4">4</option>
+						      <option th:value="7">7</option>
+						      <option th:value="10">10</option>
+						      <option th:value="12">12</option>
+						      <option th:value="14">14</option>
+						      <option th:value="17">17</option>
+						    </select>
+						</div>
+				  	</div>
+					<div class="form-group row">
+						<label for="num_factura" class="col-sm-2 col-form-label">N Factura</label>
+						<div class="col-sm-5">
+							<input type="text" th:field="*{factura.numFactura}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> 
+								
+						</div>
+					</div>		
+					<div class="form-group row">
+						<label for="fecha_emision" class="col-sm-2 col-form-label">Fecha Emisión</label>
+						<div class="col-sm-3">
+							<input type="date" th:field="*{fechaEmision}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> 
+								
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="fecha_vencimiento" class="col-sm-2 col-form-label">Fecha Vencimiento</label>
+						<div class="col-sm-3">
+							<input type="date" th:field="*{fechaVencimiento}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> 
+								
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="periodo_detraccion" class="col-sm-2 col-form-label">Periodo Detracción</label>
+						<div class="col-sm-3">
+							<input type="date" th:field="*{fechaPeriodo}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> 
+								
+						</div>
+					</div>
+					
+					<div class="form-group row">
+					    <label for="tipo_moneda" class="col-sm-2 col-form-label">Tipo de Moneda</label>
+					    <div class="col-sm-2">
+						    <select th:field="*{factura.tipoMoneda}"  class="form-control" id="exampleFormControlSelect1">
+						      <option th:value="01">01: Soles</option>
+						      <option th:value="10"	>10: Dolares</option>
+						    </select>
+						</div>
+				  	</div>
+					
+					<div class="form-group row">
+						<label for="descripcion" class="col-sm-2 col-form-label" th:text="'Descripción'"></label>
+						<div class="col-sm-6">
+							<textarea rows="4" cols="50" th:field="*{factura.descripcion}" class="form-control" th:errorclass="'form-control is-invalid'">
+							</textarea>
+							<div class="invalid-feedback" th:if="${#fields.hasErrors('factura.descripcion')}" th:errors="*{factura.descripcion}"></div>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="subtotal" class="col-sm-2 col-form-label" th:text="'Subtotal'"></label>
+						<div class="col-sm-4">
+							<input type="text" th:field="*{factura.subtotal}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> 
+						</div>
+					</div>
+				
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" th:text="'IGV'"></label>
+						<div class="col-sm-1">
+						 <label class="form-control">18%</label>
+						</div>					
+					</div>
+		
+					<div class="form-group row">
+						<label for="total" class="col-sm-2 col-form-label" th:text="'Total'"></label>
+						<div class="col-sm-4">
+							<span class="badge badge-secondary" id="total">0</span>
+							
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="porcentaje_detraccion" class="col-sm-2 col-form-label">Porcentaje Detracción</label>
+						<div class="col-sm-2">
+							 <select th:field="*{factura.porcetajeDetraccion}" class="form-control" id="exampleFormControlSelect1">
+						      <option th:value="1.5">1.5</option>
+						      <option th:value="4">4</option>
+						      <option th:value="10">10</option>
+						      <option th:value="12">12</option>
+						      <option th:value="15">15</option>
+						    </select>
+						</div>
+				  	</div>
+
+					<div class="form-group row">
+						<label for="buscar_proveedor" class="col-sm-2 col-form-label"
+							th:text="'Buscar proveedor'"></label>
+						<div class="col-sm-6">
+							<input type="text" name="buscar_proveedor" id="buscar_proveedor"
+								class="form-control" />
+						</div>
+					</div>
+					
+
+					<div class="form-group row">
+						<div class="col-sm-6">
+							<input type="submit" th:value="${titulo}"
+								class="btn btn-secondary" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

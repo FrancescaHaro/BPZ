@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				
+				<table class="table table-striped table-bordered">
+					<thead class="thead-inverse">
+						<tr>
+							<th>id</th>
+							<th>Codigo Servicio</th>
+							<th>N Factura</th>
+							<th>Fecha Emision</th>
+							<th>Fecha Vencimiento</th>
+							<th>Periodo Detraccion</th>
+							<th>Descripcion</th>							
+							<th>Tipo Moneda</th>
+							<th>Subtotal</th>
+							<th>Total</th>
+							<th>Porcentaje Detraccion</th>
+							<th>RUC Proveedor</th>
+							<th>editar</th>
+							<th>eliminar</th>
+						</tr>
+					</thead>					<tbody>
+						<tr th:each="factura: ${facturas}">
+							<td><a class="btn btn-primary btn xs"
+							th:text="${factura.id}"></a></td>
+							<td th:text="${factura.codigoServicio}"></td>
+							<td th:text="${factura.numFactura}"></td>
+							<td><a class="btn btn-danger btn-xs"
+								th:href="@{/factura/crear/} + ${factura.id}" th:text="'editar'"
+								></a></td>
+							<td><a class="btn btn-danger btn-xs"
+								th:href="@{/factura/eliminar/} + ${factura.id}" th:text="'eliminar'"
+								onclick="return confirm('Estas seguro que quieres eliminar?');"></a></td>
+								
+						</tr>
+					</tbody>
+			
+				</table>
+				<div class="form-group row">
+					<div class="col-sm-6">
+						<td><a class="btn btn-primary"
+								th:href="@{/factura/crear} " th:text="'crear'"></a></td>
+					</div>
+				</div>
+			</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
