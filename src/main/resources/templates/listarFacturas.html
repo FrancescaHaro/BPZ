@@ -24,8 +24,8 @@
 							<th>Total</th>
 							<th>Porcentaje Detraccion</th>
 							<th>RUC Proveedor</th>
-							<th>editar</th>
-							<th>eliminar</th>
+							<th></th>
+							<th></th>
 						</tr>
 					</thead>					<tbody>
 						<tr th:each="factura: ${facturas}">
@@ -33,6 +33,15 @@
 							th:text="${factura.id}"></a></td>
 							<td th:text="${factura.codigoServicio}"></td>
 							<td th:text="${factura.numFactura}"></td>
+							<td th:text="${factura.fechaEmision}"></td>
+							<td th:text="${factura.fechaVencimiento}"></td>
+							<td th:text="${factura.periodoDetraccion}"></td>
+							<td th:text="${factura.descripcion}"></td>
+							<td th:text="${factura.tipoMoneda}"></td>
+							<td th:text="${factura.subtotal}"></td>
+							<td th:text="${factura.total}"></td>
+							<td th:text="${factura.porcentajeDetraccion}"></td>
+							<td >AYUDA</td>
 							<td><a class="btn btn-danger btn-xs"
 								th:href="@{/factura/crear/} + ${factura.id}" th:text="'editar'"
 								></a></td>

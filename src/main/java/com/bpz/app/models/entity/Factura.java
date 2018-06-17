@@ -59,7 +59,7 @@ public class Factura implements Serializable {
 	@NotNull
 	private double total;
 	
-	private double porcetajeDetraccion;
+	private double porcentajeDetraccion;
 		
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="factura_id", insertable=false, updatable=false)
@@ -141,12 +141,12 @@ public class Factura implements Serializable {
 		this.total = total;
 	}
 
-	public double getPorcetajeDetraccion() {
-		return porcetajeDetraccion;
+	public double getPorcentajeDetraccion() {
+		return porcentajeDetraccion;
 	}
 
-	public void setPorcetajeDetraccion(double porcetajeDetraccion) {
-		this.porcetajeDetraccion = porcetajeDetraccion;
+	public void setPorcentajeDetraccion(double porcetajeDetraccion) {
+		this.porcentajeDetraccion = porcetajeDetraccion;
 	}
 
 	public Empleado getEmpleado() {
