@@ -24,8 +24,7 @@
 					</thead>
 					<tbody>
 						<tr th:each="persona: ${personas}">
-							<td><a class="btn btn-primary btn xs"
-							th:text="${persona.idPersonaContacto}"></a></td>
+							<td th:text="${persona.idPersonaContacto}"></td>
 							<td th:text="${persona.nombre}"></td>
 							<td th:text="${persona.apellido}"></td>
 							<td th:text="${persona.dni}"></td>

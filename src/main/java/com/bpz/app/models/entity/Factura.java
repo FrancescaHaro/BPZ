@@ -62,11 +62,9 @@ public class Factura implements Serializable {
 	private double porcentajeDetraccion;
 		
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="factura_id", insertable=false, updatable=false)
 	private Empleado empleado;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="factura_id", insertable=false, updatable=false)
 	private Proveedor proveedor;
 	
 	

@@ -29,8 +29,7 @@
 						</tr>
 					</thead>					<tbody>
 						<tr th:each="factura: ${facturas}">
-							<td><a class="btn btn-primary btn xs"
-							th:text="${factura.id}"></a></td>
+							<td th:text="${factura.id}"></td>
 							<td th:text="${factura.codigoServicio}"></td>
 							<td th:text="${factura.numFactura}"></td>
 							<td th:text="${factura.fechaEmision}"></td>
@@ -41,7 +40,7 @@
 							<td th:text="${factura.subtotal}"></td>
 							<td th:text="${factura.total}"></td>
 							<td th:text="${factura.porcentajeDetraccion}"></td>
-							<td >AYUDA</td>
+							<td th:text="${factura.proveedor.ruc}"></td>
 							<td><a class="btn btn-danger btn-xs"
 								th:href="@{/factura/crear/} + ${factura.id}" th:text="'editar'"
 								></a></td>
@@ -53,10 +52,10 @@
 					</tbody>
 			
 				</table>
+				
 				<div class="form-group row">
 					<div class="col-sm-6">
-						<td><a class="btn btn-primary"
-								th:href="@{/factura/crear} " th:text="'crear'"></a></td>
+						<td><a class="btn btn-primary" th:href="@{/factura/crear/}" th:text="'crear'"></a></td>
 					</div>
 				</div>
 			</div>

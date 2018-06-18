@@ -21,8 +21,7 @@
 					</thead>
 					<tbody>
 						<tr th:each="proveedor: ${proveedores}">
-							<td><a class="btn btn-primary btn xs"
-							th:text="${proveedor.idProveedor}"></a></td>
+							<td th:text="${proveedor.idProveedor}"></td>
 							<td th:text="${proveedor.razonSocial}"></td>
 							<td th:text="${proveedor.ruc}"></td>
 							<td><a class="btn btn-danger btn-xs"

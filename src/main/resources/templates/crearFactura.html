@@ -92,7 +92,7 @@
 					<div class="form-group row">
 						<label for="subtotal" class="col-sm-2 col-form-label" th:text="'Subtotal'"></label>
 						<div class="col-sm-4">
-							<input type="text" th:field="*{factura.subtotal}" class="form-control"
+							<input id="subtotal" type="text" th:field="*{factura.subtotal}" class="form-control"
 								th:errorclass="'form-control alert-danger'" /> 
 						</div>
 					</div>
@@ -107,8 +107,7 @@
 					<div class="form-group row">
 						<label for="total" class="col-sm-2 col-form-label" th:text="'Total'"></label>
 						<div class="col-sm-4">
-							<span class="badge badge-secondary" id="total">0</span>
-							
+							<input id="total" class="form-control" type="text" disabled />
 						</div>
 					</div>
 
@@ -146,7 +145,8 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:src="@{/js/CalcularTotal.js}"></script>
 </body>
 </html>

@@ -33,11 +33,11 @@ public class PersonaContacto implements Serializable {
 	@Email
 	private String correo;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="id_proveedor")
+	private Proveedor proveedor;
+
 	
-	
-
-
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -84,6 +84,14 @@ public class PersonaContacto implements Serializable {
 
 	public void setIdPersonaContacto(Long idPersonaContacto) {
 		this.idPersonaContacto = idPersonaContacto;
+	}
+
+	public Proveedor getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(Proveedor proveedor) {
+		this.proveedor = proveedor;
 	}
 	
 	

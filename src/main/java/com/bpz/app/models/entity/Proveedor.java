@@ -18,6 +18,7 @@ import javax.validation.constraints.NotNull;
 
 
 
+
 @Entity
 @Table(name = "Proveedor")
 public class Proveedor implements Serializable {
@@ -40,15 +41,13 @@ public class Proveedor implements Serializable {
 	@NotNull
 	private String tipoPersona;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(mappedBy="proveedor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private PersonaContacto personaContacto;
 
 	@OneToMany(mappedBy="proveedor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	//@JoinColumn(name = "Proveedor_id")
 	private List<Cuenta> cuentas;
 	
-	@OneToMany(mappedBy="proveedor",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	//@JoinColumn(name = "Proveedor_id")
+	@OneToMany(mappedBy="proveedor", fetch=FetchType.LAZY, cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<Factura> facturas;
 	
 	
