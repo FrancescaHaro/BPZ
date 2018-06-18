@@ -21,7 +21,7 @@
 					
 					<form th:action="@{/factura/crear}" th:object="${facturaViewModel}" method="post"
 					enctype="multipart/form-data">
-					
+					<input type= "hidden" th:field="*{factura.id}" />
 					<div class="form-group row">
 					    <label for="codigo_servicio" class="col-sm-2 col-form-label">Código de Servicio</label>
 					    <div class="col-sm-2">

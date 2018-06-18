@@ -36,6 +36,14 @@ public class FacturaService implements IFacturaService{
 		return facturaDao.findById(id).orElse(null);
 	}
 
+	@Override
+	@Transactional
+	public void eliminarPorId(Long id) {
+		// TODO Auto-generated method stub
+		facturaDao.deleteById(id);
+		
+	}
+
 	
 
 }

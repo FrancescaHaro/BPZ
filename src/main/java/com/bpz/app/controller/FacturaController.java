@@ -24,6 +24,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bpz.app.models.entity.Factura;
+import com.bpz.app.models.entity.Proveedor;
 import com.bpz.app.service.IFacturaService;
 import com.bpz.app.service.IProveedorService;
 import com.bpz.app.viewmodel.FacturaViewModel;
@@ -89,23 +90,48 @@ public class FacturaController {
 	
 	
 	@RequestMapping(value = "/crear/{id}")
-	public String editar(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
-
-		Factura factura = null;
-
-		if (id > 0) {
-			factura = fService.findbyId(id);
-			if (factura == null) {
-				flash.addFlashAttribute("error", "El ID de la factura no existe en la BBDD!");
-				return "redirect:/factura/listar";
-			}
-		} else {
-			flash.addFlashAttribute("error", "El ID de la factura no puede ser cero!");
-			return "redirect:/factura/listar";
-		}
-		model.addAttribute("factura", factura);
+	public String editar(@PathVariable(value = "id") Long id, Model model, @Valid FacturaViewModel facturaViewModel,
+			BindingResult result, RedirectAttributes flash,	SessionStatus status) {
+		model.addAttribute("proveedores", pService.findAll());
 		model.addAttribute("titulo", "Editar Factura");
+	
+		Factura factura = factura = fService.findbyId(id);
+		factura.setId(id);
+		Proveedor proveedor = new Proveedor();
+		proveedor = pService.findbyId(factura.getProveedor().getIdProveedor());
+		
+		facturaViewModel.setFactura(factura);
+		facturaViewModel.setProveedor(proveedor);
+		facturaViewModel.setFechaEmision(factura.getFechaEmision().toString());
+		facturaViewModel.setFechaVencimiento(factura.getFechaVencimiento().toString());
+		facturaViewModel.setFechaPeriodo(factura.getPeriodoDetraccion().toString());
+		
+		model.addAttribute("facturaViewModel", facturaViewModel);
+		
+		
+		
+		
+		
+		
+		
+		status.setComplete();
+		
 		return "crearFactura";
+	}
+	
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
+
+		Factura factura = fService.findbyId(id);
+
+		if (factura != null) {
+			fService.eliminarPorId(id);
+			flash.addFlashAttribute("success", "Factura eliminado con éxito!");
+			return "redirect:/factura/listar/" ;
+		}
+		flash.addFlashAttribute("error", "La factura no existe en la base de datos, no se pudo eliminar!");
+
+		return "redirect:/proveedor/listar";
 	}
 	
 	@InitBinder     
